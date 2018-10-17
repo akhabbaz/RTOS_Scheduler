@@ -32,7 +32,7 @@
 *.obj
 *.o
 *.sbr
-
+!mbed/LPC1768/*.o 
 # Build files
 *.bat  	# define exception below if needed
 *._ia
