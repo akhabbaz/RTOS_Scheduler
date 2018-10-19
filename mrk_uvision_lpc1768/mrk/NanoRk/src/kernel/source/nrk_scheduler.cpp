@@ -201,7 +201,8 @@ void _nrk_scheduler() {
 						
         }
     }
-   
+   // Add the line below.
+    task_ID = nrk_get_high_ready_task_ID();
     nrk_high_ready_prio = nrk_task_TCB[task_ID].task_prio;
     nrk_high_ready_TCB = &nrk_task_TCB[task_ID];
     
