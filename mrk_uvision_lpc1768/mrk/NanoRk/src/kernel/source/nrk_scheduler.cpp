@@ -150,8 +150,8 @@ void _nrk_scheduler() {
 			
         // TODO: Replace the if condition below. If the task is disabled, skip it.
         // Hint: a task ID of -1 in an nrk_task_TCB entry indicates a task is disabled
-        if (true) {
-						
+        if (nrk_task_TCB[task_ID].task_ID == -1) {
+					continue;		
 				}
         
         // TODO: Reset the current task's suspend flag

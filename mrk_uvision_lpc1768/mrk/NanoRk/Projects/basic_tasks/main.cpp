@@ -38,21 +38,21 @@ int main(void) {
 
 void Task1() {
     while (1) {
-        wait_ms(50);
+      //  wait_ms(50);
 			  nrk_wait_until_next_period();
     }
 }
 
 void Task2() {
     while (1) {
-        wait_ms(50);
+      //  wait_ms(50);
 			  nrk_wait_until_next_period();
     }
 }
 
 void Task3() {
     while (1) {
-        wait_ms(50);
+      //  wait_ms(50);
 			  nrk_wait_until_next_period();
     }
 }
