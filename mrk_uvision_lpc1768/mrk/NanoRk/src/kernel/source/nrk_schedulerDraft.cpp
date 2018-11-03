@@ -205,8 +205,7 @@ void _nrk_scheduler() {
 					}
         // TODO: Here you should set the value of next_wake (already declared for you)
             // to find the minimum next_wakeup within the tasks (excluding a next_wake value of 0)
-				if ( nrk_task_TCB[task_ID].next_wakeup < next_wake  && nrk_task_TCB[task_ID].next_wakeup > 0) {
-									next_wake = nrk_task_TCB[task_ID].next_wakeup;
+				if ( nrk_task_TCB[task_ID].next_wakeup < next_wake  && nrk_task_TCB[task_ID].next_wakeup > 0) { next_wake = nrk_task_TCB[task_ID].next_wakeup;
 				}
 	  }        
             

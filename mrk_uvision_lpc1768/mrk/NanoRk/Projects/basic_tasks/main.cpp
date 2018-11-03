@@ -25,8 +25,17 @@ void nrk_create_taskset();
 
 // You do not need to modify this function
 struct __FILE { int handle; };
+//DigitalOut myLED(LED4);
+
 
 int main(void) {
+	
+    /*while(1){
+				myLED = 1;
+			  wait(0.5);
+			  myLED = 0;
+			  wait(0.5);
+		}*/
     nrk_setup_ports();
     nrk_init();
     nrk_create_taskset();
@@ -38,21 +47,21 @@ int main(void) {
 
 void Task1() {
     while (1) {
-        wait_ms(50);
+        //wait_ms(50);
 			  nrk_wait_until_next_period();
     }
 }
 
 void Task2() {
     while (1) {
-        wait_ms(50);
+        //wait_ms(50);
 			  nrk_wait_until_next_period();
     }
 }
 
 void Task3() {
     while (1) {
-        wait_ms(50);
+        //wait_ms(50);
 			  nrk_wait_until_next_period();
     }
 }
