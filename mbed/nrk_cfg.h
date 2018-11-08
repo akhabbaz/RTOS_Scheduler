@@ -73,6 +73,6 @@
 // If this is set, the mrk scheduler will use dynamic-priority scheduling and
 // forego using a priority queue.
 // Otherwise, it will use static-priority scheduling with a priority queue.
-//#define SCHED_PRIO_DYNAMIC
+#define SCHED_PRIO_DYNAMIC
 
 #endif

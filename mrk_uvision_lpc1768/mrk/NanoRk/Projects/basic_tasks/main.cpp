@@ -26,7 +26,19 @@ void nrk_create_taskset();
 // You do not need to modify this function
 struct __FILE { int handle; };
 //DigitalOut myLED(LED4);
-
+void printTasksPriorities(void);
+void printTasksPriorities(void)
+{
+	for (int i = 0; i < 4; i++)
+	{
+			printf("T: %d P: %d", nrk_task_TCB[i].task_ID, nrk_task_TCB[i].task_prio);
+		  if ( nrk_task_TCB[i].task_ID == NRK_IDLE_TASK_ID) {
+				printf(" Idle Task\r\n");
+			}
+			else
+				printf("\r\n");
+	}
+}
 
 int main(void) {
 	
@@ -40,6 +52,7 @@ int main(void) {
     nrk_init();
     nrk_create_taskset();
 	  printf("\r\n\r\n========== START ==========\r\n\r\n");
+	  printTasksPriorities();
     nrk_start();
     return 0;
 }
@@ -47,22 +60,22 @@ int main(void) {
 
 void Task1() {
     while (1) {
-        //wait_ms(50);
-			  nrk_wait_until_next_period();
+        wait_ms(50);
+			  //nrk_wait_until_next_period();
     }
 }
 
 void Task2() {
     while (1) {
-        //wait_ms(50);
-			  nrk_wait_until_next_period();
+        wait_ms(50);
+			  //nrk_wait_until_next_period();
     }
 }
 
 void Task3() {
     while (1) {
-        //wait_ms(50);
-			  nrk_wait_until_next_period();
+        wait_ms(50);
+			  //nrk_wait_until_next_period();
     }
 }
 

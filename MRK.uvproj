@@ -80,7 +80,7 @@
           <AfterMake>
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name>fromelf --bin -o F:\@L.bin !L</UserProg1Name>
+            <UserProg1Name>fromelf --bin -o D:\@L.bin !L</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -139,7 +139,7 @@
           <Target>
             <UseTarget>0</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>0</RunToMain>
+            <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
             <RestoreWatchpoints>1</RestoreWatchpoints>
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
@@ -526,6 +526,11 @@
               <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\drivers\platform\mbed\ff_basic_sensor.cpp</FilePath>
             </File>
             <File>
+              <FileName>MRF24J40.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\radio\mrf24j40\source\MRF24J40.cpp</FilePath>
+            </File>
+            <File>
               <FileName>nrk_driver.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\kernel\source\nrk_driver.cpp</FilePath>
@@ -539,11 +544,6 @@
               <FileName>basic_rf.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\radio\mrf24j40\source\basic_rf.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MRF24J40.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\radio\mrf24j40\source\MRF24J40.cpp</FilePath>
             </File>
             <File>
               <FileName>main.cpp</FileName>
@@ -1075,6 +1075,11 @@
               <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\drivers\platform\mbed\ff_basic_sensor.cpp</FilePath>
             </File>
             <File>
+              <FileName>MRF24J40.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\radio\mrf24j40\source\MRF24J40.cpp</FilePath>
+            </File>
+            <File>
               <FileName>nrk_driver.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\kernel\source\nrk_driver.cpp</FilePath>
@@ -1088,11 +1093,6 @@
               <FileName>basic_rf.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\radio\mrf24j40\source\basic_rf.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MRF24J40.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\mrk_uvision_lpc1768\mrk\NanoRk\src\radio\mrf24j40\source\MRF24J40.cpp</FilePath>
             </File>
             <File>
               <FileName>main.cpp</FileName>

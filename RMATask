@@ -1,0 +1,34 @@
+S. T 0
+S. T 1
+S. T 0
+S. T 1
+S. T 2
+S. T 1
+S. T 2
+S. T 3
+S. T 1
+S. T 3
+S. T 1
+S. T 2
+S. T 1
+S. T 2
+S. T 3
+S. T 1
+S. T 3
+S. T 1
+S. T 3
+S. T 2
+S. T 1
+S. T 2
+S. T 1
+S. T 3
+S. T 0
+S. T 1
+S. T 0
+
+This is the Rate Monotonic output that looks perfectly correct.
+It matches the model and there are no errors.
+
+It the beginning there are a few errors.
+
+

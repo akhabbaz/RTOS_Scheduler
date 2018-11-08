@@ -79,7 +79,11 @@ void _nrk_scheduler() {
     int8_t   task_ID;
     uint16_t next_wake;
     uint16_t start_time_stamp;
-	
+	// current early deadline
+#ifdef SCHED_PRIO_DYNAMIC
+	  uint16_t eD = 32000;
+	  int8_t eDTask = -1;
+#endif
     nrk_int_disable();
 	
     
@@ -115,8 +119,9 @@ void _nrk_scheduler() {
             nrk_cur_task_TCB->event_suspend = 0;
             nrk_cur_task_TCB->nw_flag = 0;
         }
-        
+#ifndef SCHED_PRIO_DYNAMIC        
         nrk_rem_from_readyQ(nrk_cur_task_TCB->task_ID);
+#endif
     }
     
     // Update cpu used value for ended task
@@ -137,7 +142,9 @@ void _nrk_scheduler() {
 				
 				if (nrk_cur_task_TCB->cpu_remaining == 0) {
 						nrk_cur_task_TCB->task_state = SUSPENDED;
+#ifndef SCHED_PRIO_DYNAMIC
 						nrk_rem_from_readyQ(nrk_cur_task_TCB->task_ID);
+#endif
 				}
     }
     
@@ -148,7 +155,7 @@ void _nrk_scheduler() {
     // TODO: The contents of this loop is what you need to implement
     for (task_ID = 0; task_ID < NRK_MAX_TASKS; task_ID++) {
 			
-        // TODO: Replace the if condition below. If the task is disabled, skip it.
+        // TODO: Replace the if condition below. If the task is diisabled, skip it.
         // Hint: a task ID of -1 in an nrk_task_TCB entry indicates a task is disabled
         if (nrk_task_TCB[task_ID].task_ID == -1) {
 					continue;		
@@ -156,6 +163,12 @@ void _nrk_scheduler() {
         
         // TODO: Reset the current task's suspend flag
         // Note, this step changes nothing about the task's state -- just its suspend flag changes.
+				// add the earliest deadline code here;
+				int16_t currentDeadline = (int16_t) nrk_task_TCB[task_ID].next_wakeup;
+				if (nrk_task_TCB[task_ID].next_period< eD) {
+					   eD = currentDeadline;
+					   eDTask = task_ID;
+				}
 				
 	nrk_task_TCB[task_ID].suspend_flag = 0;
         
@@ -219,7 +232,9 @@ void _nrk_scheduler() {
                 nrk_task_TCB[task_ID].next_wakeup   = nrk_task_TCB[task_ID].period;
             
                 // TODO: uncomment this line once you've implemented the rest of the for loop
-                nrk_add_to_readyQ(task_ID);
+#ifndef SCHED_PRIO_DYNAMIC  
+              nrk_add_to_readyQ(task_ID);
+#endif
             
             }
             
@@ -237,7 +252,11 @@ void _nrk_scheduler() {
 	  }        
     }
    // Add the line below.
+#ifdef SCHED_PRIO_DYNAMIC;
+		task_ID = eDTask;
+#else
     task_ID = nrk_get_high_ready_task_ID();
+#endif
     nrk_high_ready_prio = nrk_task_TCB[task_ID].task_prio;
     nrk_high_ready_TCB = &nrk_task_TCB[task_ID];
     
