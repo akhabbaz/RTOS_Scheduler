@@ -81,8 +81,8 @@ void _nrk_scheduler() {
     uint16_t start_time_stamp;
 	// current early deadline
 #ifdef SCHED_PRIO_DYNAMIC
-	  uint16_t eD = 32000;
-	  int8_t eDTask = -1;
+    uint16_t eD = 32000;
+    int8_t eDTask = NRK_IDLE_TASK_ID;
 #endif
     nrk_int_disable();
 	
@@ -163,12 +163,6 @@ void _nrk_scheduler() {
         
         // TODO: Reset the current task's suspend flag
         // Note, this step changes nothing about the task's state -- just its suspend flag changes.
-				// add the earliest deadline code here;
-				int16_t currentDeadline = (int16_t) nrk_task_TCB[task_ID].next_wakeup;
-				if (nrk_task_TCB[task_ID].next_period< eD) {
-					   eD = currentDeadline;
-					   eDTask = task_ID;
-				}
 				
 	nrk_task_TCB[task_ID].suspend_flag = 0;
         
@@ -249,10 +243,22 @@ void _nrk_scheduler() {
 	      			nrk_task_TCB[task_ID].next_wakeup > 0) { 
 	      		next_wake = nrk_task_TCB[task_ID].next_wakeup;
 	      }
-	  }        
+	  }
+// here is the condition for ED.  The task has to be ready and if so the one with the shortest period
+// should be selected.  At this point next_period and ready are bothe in their final form. Suspended tasks should
+// be run. US the ED condition just for all ready tasks except the IDLE task
+#ifdef SCHED_PRIO_DYNAMIC	
+	if (nrk_task_TCB[task_ID].task_ID != NRK_IDLE_TASK_ID  
+			&& nrk_task_TCB[task_ID].task_state == READY 
+			&& nrk_task_TCB[task_ID].next_period < eD)
+	{ 
+		eD = nrk_task_TCB[task_ID].next_period;
+		eDTask = task_ID;
+	}
+#endif
     }
    // Add the line below.
-#ifdef SCHED_PRIO_DYNAMIC;
+#ifdef SCHED_PRIO_DYNAMIC
 		task_ID = eDTask;
 #else
     task_ID = nrk_get_high_ready_task_ID();

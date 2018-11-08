@@ -8,7 +8,7 @@
 #include <nrk_timer.h>
 #include <nrk_stack_check.h>
 #include <nrk_stats.h>
-
+//#define TASK_SET_TWO
 NRK_STK Stack1[NRK_APP_STACKSIZE];
 nrk_task_type TaskOne;
 void Task1(void);
@@ -100,10 +100,18 @@ void nrk_create_taskset() {
     TaskTwo.FirstActivation = TRUE;
     TaskTwo.Type = BASIC_TASK;
     TaskTwo.SchType = PREEMPTIVE;
+#ifdef TASK_SET_TWO
+    TaskTwo.period.secs = 0;
+    TaskTwo.period.nano_secs = 700*NANOS_PER_MS;
+    TaskTwo.cpu_reserve.secs = 0;
+    TaskTwo.cpu_reserve.nano_secs = 200*NANOS_PER_MS;
+#else
     TaskTwo.period.secs = 1;
     TaskTwo.period.nano_secs = 000*NANOS_PER_MS;
     TaskTwo.cpu_reserve.secs = 0;
     TaskTwo.cpu_reserve.nano_secs = 300*NANOS_PER_MS;
+#endif
+    
     TaskTwo.offset.secs = 0;
     TaskTwo.offset.nano_secs = 0;
     nrk_activate_task (&TaskTwo);
@@ -115,10 +123,17 @@ void nrk_create_taskset() {
     TaskThree.Type = BASIC_TASK;
     TaskThree.SchType = PREEMPTIVE;
     TaskThree.period.secs = 1;
+#ifdef TASK_SET_TWO
+    TaskThree.period.nano_secs = 400*NANOS_PER_MS;
+    TaskThree.cpu_reserve.secs = 0;
+    TaskThree.cpu_reserve.nano_secs = 500*NANOS_PER_MS;
+    TaskThree.offset.secs = 0;
+#else
     TaskThree.period.nano_secs = 500*NANOS_PER_MS;
     TaskThree.cpu_reserve.secs = 0;
     TaskThree.cpu_reserve.nano_secs = 400*NANOS_PER_MS;
     TaskThree.offset.secs = 0;
+#endif    
     TaskThree.offset.nano_secs = 0;
     nrk_activate_task (&TaskThree);
 }
